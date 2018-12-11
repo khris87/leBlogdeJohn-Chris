@@ -83,3 +83,17 @@ include "fonction.php";
 <script src="library/bootstrap/js/bootstrap.bundle.js"></script>     
 </body>
 </html>
+<?php include 'header.php';
+
+include 'fonctions.php';
+?>
+
+<section id="articlesRecents" class="container">
+
+    <div class="row">       
+        <?php getPosts($bdd); ?>
+    </div>
+    
+</section>
+
+<?php include 'footer.php';
