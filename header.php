@@ -14,43 +14,41 @@
 
 <body>
     
-<section id="enTete">
-    <div class="container">
-        <h1>Le blog de John et Chris</h1>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Connexion<!--bouton d'acces à la connexion-->
-        </button>
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-      
-        <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Connexion utilisateur</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-        
-        <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="log.php">
-                            <div class="form-group">
-                                <label for="email">Pseudo</label>
-                                <input type="texto" class="form-control" id="pdo" placeholder="Enter pseudo" name="pseudo">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password</label>
-                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
-                            </div>
-                    </div>
-        
-        <!-- Modal footer -->
-                    <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
-        
+<section class="jumbotron" id="enTete">
+    <h1>Le blog de John et Chris</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Connexion<!--bouton d'acces à la connexion-->
+    </button>
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+    
+    <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Connexion utilisateur</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
+    
+    <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="log.php" method="post">
+                        <div class="form-group">
+                            <label for="pdo">Pseudo</label>
+                            <input type="text" class="form-control" id="pdo" placeholder="Enter pseudo" name="pseudo" value="pseudo">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" value="password">
+                        </div>
+                </div>
+    
+    <!-- Modal footer -->
+                <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+    
             </div>
         </div>
     </div>
