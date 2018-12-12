@@ -19,6 +19,9 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         Connexion<!--bouton d'acces à la connexion-->
     </button>
+    <form method="POST" action="deconnexion.php">
+        <input type="submit" class="btn btn-primary" value="Deconnexion">
+    </form>
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-sm">
@@ -32,20 +35,20 @@
     
     <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="log.php" method="post">
+                    <form action="connect.php" method="post">
                         <div class="form-group">
-                            <label for="pdo">Pseudo</label>
-                            <input type="text" class="form-control" id="pdo" placeholder="Enter pseudo" name="pseudo" value="pseudo">
+                            <label for="pdo">Votre Mail</label>
+                            <input type="email" class="form-control" id="pdo" name="mailconnect" placeholder="Enter mail"  >
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Password</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" value="password">
+                            <label for="pwd">Votre mot de passe</label>
+                            <input type="password" class="form-control" id="pwd" name="mdpconnect"  placeholder="Enter password" >
                         </div>
                 </div>
     
     <!-- Modal footer -->
                 <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="formconnexion" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
     

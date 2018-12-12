@@ -1,26 +1,16 @@
 <?php
-
+session_start();
 include "connexion.php";
 include "fonction.php";
-
+include 'header.php';
+include 'fonctions.php';
 ?>
 
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="library/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <title>Document</title>
-</head>
-<body>
-    <div align="center">
+<section id="articlesRecents" class="container">
+
+    <div class="row">       
+        <?php getPosts($bdd); ?>
+        <div class="col-12 col-lg-6" align="center">
         <h2>Inscription</h2>
             <form method="POST" action="">
                 <table >
@@ -79,21 +69,13 @@ include "fonction.php";
 }
 ?>    
             </form>
+        <div>
+            <a href="newpost.php?id=<?php echo $_SESSION['id'] ?>">Ecrire un nouvel article !</a>
+        </div>
     </div>
-<script src="library/bootstrap/js/bootstrap.bundle.js"></script>     
-</body>
-</html>
-<?php include 'header.php';
-
-include 'fonctions.php';
-?>
-
-<section id="articlesRecents" class="container">
-
-    <div class="row">       
-        <?php getPosts($bdd); ?>
     </div>
     
 </section>
 
 <?php include 'footer.php';
+

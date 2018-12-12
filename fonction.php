@@ -26,7 +26,7 @@ if(isset($_POST['forminscription']))
                         {
                         $insertmbr = $bdd->prepare("INSERT INTO users(pseudo, mail, mail2, motdepasse, motdepasse2)VALUES(?, ?, ?, ?, ?)");
                         $insertmbr->execute(array("$pseudo", "$mail", "$mail2", "$mdp", "$mdp2"));
-                        $erreur = "Votre compte a bien été crée ! <a href=\"connect.php\">Me connecter</a>";
+                        $erreur = "Votre compte a bien été crée ! <a href=\"connect.php\" data-toggle=\"modal\" data-target=\"#myModal\">Me connecter</a>";
                         }
                         else
                         {
@@ -50,7 +50,4 @@ if(isset($_POST['forminscription']))
         $erreur = "Tous les champs doivent être complétés !";
     }
 }
-if(isset($erreur))
-{
-    echo '<font color="red">'.$erreur."</font>";
-}
+
