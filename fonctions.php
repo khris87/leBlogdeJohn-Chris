@@ -53,3 +53,15 @@ function thePost($bdd,$blogId){
     
     return $reponse;
 }
+
+function lastsPosts($bdd,$userId,$blogId){
+    $reponse=$bdd->query('SELECT posts.id,`userId`,`title`,`content`,`published`,`pseudo` 
+                            FROM `posts` 
+                            INNER JOIN `users` 
+                            ON posts.userId = users.id 
+                            WHERE posts.userId = '.$userId.
+                            ' AND posts.id != ' .$blogId. 
+                            ' ORDER BY published DESC LIMIT 10;');
+    
+    return $reponse;
+}

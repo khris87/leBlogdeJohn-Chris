@@ -60,14 +60,13 @@ include 'fonctions.php';
                             <input type="submit" name="forminscription" value="je m'inscris" />
                         </td>
                     </tr>
-                </table>
-            
+                </table>        
 <?php
- if(isset($erreur))
+if(isset($erreur))
 {
     echo '<font color="red">'.$erreur."</font>";
 }
-?>    
+?>   
             </form>
         <div>
             <a href="newpost.php?id=<?php echo $_SESSION['id'] ?>">Ecrire un nouvel article !</a>
