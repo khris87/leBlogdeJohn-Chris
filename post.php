@@ -14,9 +14,23 @@ $showContent=$content->fetch();
             <h2><?php echo $showContent['title'] ?></h2>
             <p><?php echo $showContent['content'] ?></p>
         </article>
-        <aside>
+        <aside class="col-12 col-lg-4">
             <h6>Posté par : <?php echo $showContent['pseudo'] ?></h6>
-            <span class="badge badge-info">le : <?php echo $showContent['published'] ?></span>
+            <span class="badge badge-info">le : <?php echo date_format(date_create($showContent['published']),'d/m/Y à H:m') ?></span>
+            <?php
+            $blogId=$_GET['id'];
+            $userId=$showContent['userId'];
+            $lastsPosts=lastsPosts($bdd,$userId,$blogId);
+            echo '<div class="flex-container mt-3">';
+            while($showLasts=$lastsPosts->fetch()){
+
+                echo '<article id="' .$showLasts['id']. '">
+                    <h3>' .$showLasts["title"]. '</h3>
+                    <p class="text-truncate">' .$showLasts["content"]. '</p>
+                    <a href="post.php?id=' .$showLasts['id']. '">voir plus</a>
+                </article>';
+            }
+            echo '</div>' ?>
         </aside>
     </div>
 </section>

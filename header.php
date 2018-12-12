@@ -17,8 +17,13 @@
 <section class="jumbotron" id="enTete">
     <h1>Le blog de John et Chris</h1>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Connexion<!--bouton d'acces à la connexion-->
+        Connexion<!--bouton d'acces au modal-->
     </button>
+    <?php 
+    $erreur=$_GET['error'];
+    if(isset($erreur)){
+            echo '<font color="red">'.$erreur."</font>";
+    } ?>
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-sm">
@@ -32,20 +37,20 @@
     
     <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="log.php" method="post">
+                    <form action="connect.php" method="post">
                         <div class="form-group">
-                            <label for="pdo">Pseudo</label>
-                            <input type="text" class="form-control" id="pdo" placeholder="Enter pseudo" name="pseudo" value="pseudo">
+                            <label for="pdo">Mail</label>
+                            <input type="email" class="form-control" id="pdo" name="mailconnect" placeholder="Enter Email">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" value="password">
+                            <input type="password" class="form-control" id="pwd" name="mdpconnect" placeholder="Enter password">
                         </div>
                 </div>
     
     <!-- Modal footer -->
                 <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="formconnexion" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
     
