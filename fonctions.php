@@ -21,7 +21,8 @@ function getPosts($bdd){//les 10 derniers posts en page d'accueil
     while($blogArticles=$reponse->fetch()){
         echo '<article id="' .$blogArticles['id']. '">
             <h3>' .$blogArticles["title"]. '</h3>
-            <p class="text-truncate">' .$blogArticles["content"]. '</p>
+            <img src="' .$blogArticles['thumbnail']. '" class="img-fluid rounded">
+            <p class="apercu">' .$blogArticles["content"]. '</p>
             <a href="post.php?id=' .$blogArticles['id']. '">voir plus</a>
         </article>';
     }

@@ -16,12 +16,15 @@
     
 <section class="jumbotron" id="enTete">
     <h1>Le blog de John et Chris</h1>
+    <div id="connexion">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         Connexion<!--bouton d'acces au modal-->
     </button>
-    <form method="POST" action="deconnexion.php">
+    <form  id="deconnexion" method="POST" action="deconnexion.php">
         <input type="submit" class="btn btn-primary" value="Deconnexion"><!--bouton de déconnexion-->
     </form>
+    </div>
+
     <?php $erreur=$_GET['error'];
     if(isset($erreur)){
             echo '<font color="red">'.$erreur. "</font>";
