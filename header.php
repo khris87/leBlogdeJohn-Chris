@@ -19,17 +19,13 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         Connexion<!--bouton d'acces au modal-->
     </button>
-<<<<<<< HEAD
     <form method="POST" action="deconnexion.php">
-        <input type="submit" class="btn btn-primary" value="Deconnexion">
+        <input type="submit" class="btn btn-primary" value="Deconnexion"><!--bouton de déconnexion-->
     </form>
-=======
-    <?php 
-    $erreur=$_GET['error'];
+    <?php $erreur=$_GET['error'];
     if(isset($erreur)){
-            echo '<font color="red">'.$erreur."</font>";
+            echo '<font color="red">'.$erreur. "</font>";
     } ?>
->>>>>>> a57b91aaaab4c30d4cb4fd0f4252b559736887c3
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-sm">
@@ -45,21 +41,12 @@
                 <div class="modal-body">
                     <form action="connect.php" method="post">
                         <div class="form-group">
-<<<<<<< HEAD
                             <label for="pdo">Votre Mail</label>
                             <input type="email" class="form-control" id="pdo" name="mailconnect" placeholder="Enter mail"  >
                         </div>
                         <div class="form-group">
                             <label for="pwd">Votre mot de passe</label>
                             <input type="password" class="form-control" id="pwd" name="mdpconnect"  placeholder="Enter password" >
-=======
-                            <label for="pdo">Mail</label>
-                            <input type="email" class="form-control" id="pdo" name="mailconnect" placeholder="Enter Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Password</label>
-                            <input type="password" class="form-control" id="pwd" name="mdpconnect" placeholder="Enter password">
->>>>>>> a57b91aaaab4c30d4cb4fd0f4252b559736887c3
                         </div>
                 </div>
     

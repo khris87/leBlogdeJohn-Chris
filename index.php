@@ -8,8 +8,12 @@ include 'fonctions.php';
 
 <section id="articlesRecents" class="container">
 
-    <div class="row">       
-        <?php getPosts($bdd); ?>
+    <div class="row">
+
+        <div class="flex-container col-12 col-lg-6">      
+            <?php getPosts($bdd); ?>
+        </div>
+
         <div class="col-12 col-lg-6" align="center">
         <h2>Inscription</h2>
             <form method="POST" action="">
@@ -68,8 +72,27 @@ if(isset($erreur))
 }
 ?>   
             </form>
+
         <div>
             <a href="newpost.php?id=<?php echo $_SESSION['id'] ?>">Ecrire un nouvel article !</a>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-6">
+            <h3>Articles par thèmes</h3>
+            <dl>
+                <?php $themes=themes($bdd);
+                    while($nameThemes=$themes->fetch()){
+                        echo '<dt><a href="themes.php?id=' .$nameThemes['id']. '">' .$nameThemes['name']. '</a></dt>' ;
+                        $idTheme=$nameThemes['id'];
+                        $seePosts=allPosts($bdd, $idTheme);
+                        while($posts=$seePosts->fetch()){
+                            echo '<dd>' .$posts['title']. '</dd>';
+                        }
+                    }
+                ?>
+            </dl>
+            </div>
         </div>
     </div>
     </div>

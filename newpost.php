@@ -9,7 +9,6 @@ if(isset($_POST['validation']))
         'userId'=>$_SESSION['id'],
         'title'=>htmlspecialchars($_POST['newtheme']),
         'content'=>htmlspecialchars($_POST['newarticle']),
-        //header("location: newpost.php?id=".$_SESSION['id']),
     ]);
 }
     if(isset($_SESSION['id']))
