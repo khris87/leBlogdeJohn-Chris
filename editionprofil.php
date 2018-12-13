@@ -8,29 +8,39 @@ if(isset($_SESSION['id']))
     $requser->execute(array($_SESSION['id']));
     $user = $requser->fetch();
 }
-    if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $user['pseudo'])
+
+if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $user['pseudo'])
+{
+    $newpseudo = htmlspecialchars($_POST['newpseudo']);
+    $insertpseudo = $bdd->prepare("UPDATE users SET pseudo = ? WHERE id = ?");
+    $insertpseudo->execute(array($newpseudo, $_SESSION['id']));
+    $header('location: index.php?id='.$_SESSION['id']);
+}
+
+if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] != $user['mail'])
+{
+    $newmail = htmlspecialchars($_POST['newmail']);
+    $insertmail = $bdd->prepare("UPDATE users SET mail = ? WHERE id = ?");
+    $insertmail->execute(array($newmail, $_SESSION['id']));
+    $header('location: index.php?id='.$_SESSION['id']);
+}
+
+if(isset($_POST['newmdp']) AND !empty($_POST['newmdp']))
+{
+    $mdp = sha1($_POST['newmdp']);
+    $mdp2 = sha1($_POST['newmdp2']);
+
+    if($mdp == $mdp2)
     {
-        $newpseudo = htmlspecialchars($_POST['newpseudo']);
-        $insertpseudo = $bdd->prepare("UPDATE users SET pseudo = ? WHERE id = ?");
-        $insertpseudo->execute(array($newpseudo, $_SESSION['id']));
-        $header('location: index.php?id='.$_SESSION['id']);
+       $insertmdp = $bdd->prepare('') 
     }
 
-    if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] != $user['mail'])
-    {
-        $newmail = htmlspecialchars($_POST['newpmail']);
-        $insertmail = $bdd->prepare("UPDATE users SET mail = ? WHERE id = ?");
-        $insertmail->execute(array($newmail, $_SESSION['id']));
-        $header('location: index.php?id='.$_SESSION['id']);
-    }
+    $newmail = htmlspecialchars($_POST['newmail']);
+    $insertmail = $bdd->prepare("UPDATE users SET mail = ? WHERE id = ?");
+    $insertmail->execute(array($newmail, $_SESSION['id']));
+    $header('location: index.php?id='.$_SESSION['id']);
+}
 
-    if(isset($_POST['newmdp']) AND !empty($_POST['newmdp'])
-    {
-        $newmail = htmlspecialchars($_POST['newpmail']);
-        $insertmail = $bdd->prepare("UPDATE users SET mail = ? WHERE id = ?");
-        $insertmail->execute(array($newmail, $_SESSION['id']));
-        $header('location: index.php?id='.$_SESSION['id']);
-    }
 ?>
 
 <html lang="fr">
@@ -50,7 +60,7 @@ if(isset($_SESSION['id']))
 <body>
     <div align="center">
         <h2>Edition de mon profil<?php echo $userinfo['pseudo']; ?></h2>
-        <form method="POST" action="index.php">
+        <form method="POST" action="index.php" enctype="multipart/form-data">
             <label>Pseudo :</label>
             <input type="text" name="newpseudo" placeholder="Pseudo" value="<?php echo $user['pseudo']; ?>" /><br /> 
             <label>Mail :</label> 

@@ -2,26 +2,61 @@
 session_start();
 include "connexion.php";
 
-if(isset($_POST['validation']))
+$title = $content = $thumbnail = "";
+if (!empty($_POST))
 {
-    $inserTheme = $bdd->prepare("INSERT INTO posts(userId, title, content)VALUES(:userId, :title, :content)");
-    $inserTheme->execute([
-        'userId'=>$_SESSION['id'],
-        'title'=>htmlspecialchars($_POST['newtheme']),
-        'content'=>htmlspecialchars($_POST['newarticle']),
-        //header("location: newpost.php?id=".$_SESSION['id']),
-    ]);
+   $title = $_POST["title"];
+   $thumbnail = $_FILES["thumbnail"]["name"];
+   $thumbnailPath ='img/'. basename($thumbnail);
+   //$thumbnailExtension = pathinfo($thumbnailPath, PATHINFO_EXTENSION);
+   $isSuccess = true;
+   $isUploadSuccess = true;
+   $content = $_POST["content"];
+
+   var_dump($_FILES);
+   var_dump($thumbnail);
+   var_dump($thumbnailPath);
+   var_dump($title);
+   var_dump($content);
+   var_dump($_SESSION['id']);
+
+   if($isUploadSuccess)
+        {
+            if(!move_uploaded_file($_FILES["thumbnail"]["tmp_name"],"$thumbnailPath"))
+            {
+                $isUploadSuccess = false;
+            }
+        }
+
+    if($isSuccess && $isUploadSuccess)
+    {
+        $statement = $bdd->prepare("INSERT INTO posts(`thumbnail`, `title`, `content`,`userId`)
+        VALUES (:thumbnail,:title,:content,:userId)");
+        $requete = $statement->execute(array(
+            'thumbnail'=>$thumbnailPath,
+            'title'=>$title,
+            'content'=>$content,
+            'userId'=>$_SESSION['id']
+            ));
+        header("location:index.php");
+
+    }
+    
 }
-    if(isset($_SESSION['id']))
-    { ?>
-    <form method="post" action="newpost.php">
+
+if(isset($_SESSION['id']))
+{ ?>
+    <form method="post" action="newpost.php" enctype="multipart/form-data">
         <div class="col-12 col-lg-6" align="center">
             <label for="newpost"><h3>Veuillez saisir votre article :</h3></label><br />
 
             <label for="theme"><h5>Votre Théme :</h5></label>
-            <input type="text" placeholder="Votre Théme" id="theme" name="newtheme"><br />
+            <input type="text" placeholder="Votre Théme" id="theme" name="title" value="<?php echo $title; ?>"><br />
 
-            <textarea name="newarticle" rows="8" cols="45" placeholder="Rajoutez votre article"></textarea><br />
+            <label for="thumbnail"><h5>Veuillez télécharger votre image :</h5></label><br />
+            <input type="file" placeholder="Votre image" id="thumbnail" name="thumbnail" value="<?php echo $thumbnail; ?>"><br />
+
+            <textarea name="content" rows="8" cols="45" placeholder="Rajoutez votre article" value="<?php echo $content; ?>"></textarea><br />
 
             <label for="envoi"><h5>Envoyer votre article :</h5></label>
             <input type="submit" name="validation" placeholder="Envoyer" />
@@ -31,6 +66,9 @@ if(isset($_POST['validation']))
 }
 else
 {
-    echo "Vous devez etre connecte avant d'envoye un article";
+    $erreur = "Vous devez etre connecte pour ecrire un article !";
+    header('location:index.php?error="' .$erreur. '"');
+
 }
+
 

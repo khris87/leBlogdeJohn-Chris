@@ -16,11 +16,7 @@ session_start();
               $_SESSION['id'] = $userinfo['id'];
               $_SESSION['pseudo'] = $userinfo['pseudo'];
               $_SESSION['mail'] = $userinfo['mail'];
-<<<<<<< HEAD
-              header("location: index.php?id=".$_SESSION['id']);
-=======
               header("location:index.php?id=".$_SESSION['id']);
->>>>>>> a57b91aaaab4c30d4cb4fd0f4252b559736887c3
             }
             else
             {
@@ -32,11 +28,4 @@ session_start();
         {
             $erreur = "Tous les champs doivent être complétés !";
         }
-<<<<<<< HEAD
     }
-?>
-
-<script src="library/bootstrap/js/bootstrap.bundle.js"></script>     
-=======
-    }
->>>>>>> a57b91aaaab4c30d4cb4fd0f4252b559736887c3

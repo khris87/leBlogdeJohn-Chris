@@ -15,7 +15,7 @@ include 'fonctions.php';
             <form method="POST" action="">
                 <table >
                     <tr>
-                        <td align="right">
+                        <td align="left">
                             <label for="pseudo">Pseudo :</label>
                         </td>
                         <td>
@@ -23,7 +23,7 @@ include 'fonctions.php';
                         </td>
                     </tr>
                     <tr>
-                        <td align="right">
+                        <td align="left">
                             <label for="mail">Mail :</label>
                         </td>
                         <td>
@@ -31,7 +31,7 @@ include 'fonctions.php';
                         </td>
                     </tr>
                     <tr>
-                        <td align="right">
+                        <td align="left">
                             <label for="mail2">confirmation du mail :</label>
                         </td>
                         <td>
@@ -39,7 +39,7 @@ include 'fonctions.php';
                         </td>
                     </tr>
                     <tr>
-                        <td align="right">
+                        <td align="left">
                             <label for="mdp">votre Mot de passe :</label>
                         </td>
                         <td>
@@ -47,8 +47,8 @@ include 'fonctions.php';
                         </td>
                     </tr>
                     <tr>
-                        <td align="right">
-                            <label for="mdp2">confirmation de votre Mot de passe :</label>
+                        <td align="left">
+                            <label for="mdp2">confirmation Mot de passe :</label>
                         </td>
                         <td>
                             <input type="password" placeholder="Confirmation de votre passe" id="mdp2" name="mdp2" />
@@ -61,16 +61,17 @@ include 'fonctions.php';
                         </td>
                     </tr>
                 </table>        
-<?php
-if(isset($erreur))
-{
-    echo '<font color="red">'.$erreur."</font>";
-}
-?>   
+
             </form>
         <div>
             <a href="newpost.php?id=<?php echo $_SESSION['id'] ?>">Ecrire un nouvel article !</a>
         </div>
+        <?php 
+        $erreur=$_GET['error'];
+        if(isset($erreur)){
+                echo '<font color="red">'.$erreur."</font>";
+        } 
+        ?>
     </div>
     </div>
     
