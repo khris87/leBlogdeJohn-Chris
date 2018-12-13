@@ -19,10 +19,13 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         Connexion<!--bouton d'acces au modal-->
     </button>
-        <form method="POST" action="deconnexion.php">
-            <input type="submit" class="btn btn-primary" value="Deconnexion">
-        </form>
-
+    <form method="POST" action="deconnexion.php">
+        <input type="submit" class="btn btn-primary" value="Deconnexion"><!--bouton de déconnexion-->
+    </form>
+    <?php $erreur=$_GET['error'];
+    if(isset($erreur)){
+            echo '<font color="red">'.$erreur. "</font>";
+    } ?>
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-sm">
@@ -38,12 +41,12 @@
                 <div class="modal-body">
                     <form action="connect.php" method="post">
                         <div class="form-group">
-                            <label for="pdo">Mail</label>
-                            <input type="email" class="form-control" id="pdo" name="mailconnect" placeholder="Enter Email">
+                            <label for="pdo">Votre Mail</label>
+                            <input type="email" class="form-control" id="pdo" name="mailconnect" placeholder="Enter mail"  >
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Password</label>
-                            <input type="password" class="form-control" id="pwd" name="mdpconnect" placeholder="Enter password">
+                            <label for="pwd">Votre mot de passe</label>
+                            <input type="password" class="form-control" id="pwd" name="mdpconnect"  placeholder="Enter password" >
                         </div>
                 </div>
     

@@ -3,7 +3,7 @@
 
 include 'connexion.php' ;
 
-function getPosts($bdd){
+function getPosts($bdd){//les 10 derniers posts en page d'accueil
     $reponse=$bdd->query('SELECT COUNT(`id`) as nbArt FROM `posts`');
     $donnees=$reponse->fetch();
     $nbArt=intVal($donnees['nbArt']);
@@ -18,8 +18,6 @@ function getPosts($bdd){
 
     $reponse=$bdd->query('SELECT * FROM `posts` ORDER BY published DESC LIMIT ' .(($cPage-1)*$perPage). ',' .$perPage. ';');
     
-    echo '<div class="flex-container col-12 col-lg-6">';
-
     while($blogArticles=$reponse->fetch()){
         echo '<article id="' .$blogArticles['id']. '">
             <h3>' .$blogArticles["title"]. '</h3>
@@ -39,12 +37,9 @@ function getPosts($bdd){
     }
 
     echo '</ul>';
-
-    echo '</div>';
-
 }
 
-function thePost($bdd,$blogId){
+function thePost($bdd,$blogId){//page dédiée à un article
     $reponse=$bdd->query('SELECT posts.id,`userId`,`thumbnail`,`title`,`content`,`published`,`pseudo` 
                             FROM `posts` 
                             INNER JOIN `users` 
@@ -54,7 +49,7 @@ function thePost($bdd,$blogId){
     return $reponse;
 }
 
-function lastsPosts($bdd,$userId,$blogId){
+function lastsPosts($bdd,$userId,$blogId){//les 10 derniers articles de l'auteur
     $reponse=$bdd->query('SELECT posts.id,`userId`,`title`,`content`,`published`,`pseudo` 
                             FROM `posts` 
                             INNER JOIN `users` 
@@ -63,5 +58,26 @@ function lastsPosts($bdd,$userId,$blogId){
                             ' AND posts.id != ' .$blogId. 
                             ' ORDER BY published DESC LIMIT 10;');
     
+    return $reponse;
+}
+
+function themes($bdd){
+    $reponse=$bdd->query('SELECT * FROM `themes`;');
+    return $reponse;
+}
+
+function allPosts($bdd, $idTheme){
+    $allPosts=$bdd->query('SELECT * FROM `posts`INNER JOIN postTheme 
+                                                    ON postTheme.postId=posts.id 
+                                                    INNER JOIN themes 
+                                                    ON themes.id=postTheme.themeId
+                                                    INNER JOIN users
+                                                    ON posts.userId=users.id 
+                                                    WHERE themes.id=' .$idTheme);
+    return $allPosts;
+}
+
+function theTheme($bdd,$idTheme){
+    $reponse=$bdd->query('SELECT * FROM themes WHERE id=' .$idTheme);
     return $reponse;
 }
