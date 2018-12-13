@@ -13,13 +13,6 @@ if (!empty($_POST))
    $isUploadSuccess = true;
    $content = $_POST["content"];
 
-   var_dump($_FILES);
-   var_dump($thumbnail);
-   var_dump($thumbnailPath);
-   var_dump($title);
-   var_dump($content);
-   var_dump($_SESSION['id']);
-
    if($isUploadSuccess)
         {
             if(!move_uploaded_file($_FILES["thumbnail"]["tmp_name"],"$thumbnailPath"))

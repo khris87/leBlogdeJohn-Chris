@@ -13,8 +13,8 @@ $showContent=$content->fetch();
         <article class="col-12 col-lg-8">
             <h2><?php echo $showContent['title'] ?></h2>
             <figure id="thumbnail" class="figure float-left">
-                <img src="" class="figure-img img-fluid rounded" alt="">
-                <figcaption class="figure-caption">abcd</figcaption>
+                <img src="<?php echo $showContent['thumbnail']?>" class="figure-img img-fluid rounded" alt="">
+                <figcaption class="figure-caption"><?php echo $showContent['thumbnail']?></figcaption>
             </figure>
             <p><?php echo $showContent['content'] ?></p>
         </article>
