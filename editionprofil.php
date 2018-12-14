@@ -25,14 +25,15 @@ if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] 
     $header('location: index.php?id='.$_SESSION['id']);
 }
 
-if(isset($_POST['newmdp']) AND !empty($_POST['newmdp']))
+if(isset($_POST['newmdp']) AND !empty($_POST['newmdp2']))
 {
     $mdp = sha1($_POST['newmdp']);
     $mdp2 = sha1($_POST['newmdp2']);
 
     if($mdp == $mdp2)
     {
-       $insertmdp = $bdd->prepare('') 
+       $insertmdp = $bdd->prepare("UPDATE users SET mdp= ? WHERE id=");
+       $insertmdp->execute(array($mdp['id']));
     }
 
     $newmail = htmlspecialchars($_POST['newmail']);

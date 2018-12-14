@@ -82,3 +82,41 @@ function theTheme($bdd,$idTheme){
     $reponse=$bdd->query('SELECT * FROM themes WHERE id=' .$idTheme);
     return $reponse;
 }
+function newPost($bdd, $id, $thumbnailPath, $title, $content)
+    {
+        $statement = $bdd->prepare("INSERT INTO posts(`thumbnail`, `title`, `content`,`userId`)
+        VALUES (:thumbnail,:title,:content,:userId)");
+        $requete = $statement->execute(array(
+            'thumbnail'=>$thumbnailPath,
+            'title'=>$title,
+            'content'=>$content,
+            'userId'=>$id
+            ));
+        header("location:index.php");
+    }
+
+function newPostTheme($bdd, $id, $themeId)
+    {
+        $query = $bdd->prepare('INSERT INTO `postTheme`(`postId`,`themeId`)
+        VALUES(:postId,:themeId)');
+        $query->execute([
+            'postId'=>$id['id'],
+            'themeId'=>$themeId['id'],
+            ]);
+    }
+
+    function getNewPost($bdd, $title)
+    {
+        $newPost = $bdd->query('SELECT id
+                                    FROM `posts`
+                                    WHERE title = "' .$title. '";');
+        $id=$newPost->fetch();
+        return $id;
+    }
+
+function supprime($bdd, $id)
+    {
+        var_dump($id);
+        $crache = $bdd->query('DELETE FROM posts WHERE posts.id ='.$id);
+        header("location:index.php");
+    }
