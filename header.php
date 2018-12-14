@@ -17,18 +17,26 @@
 <section class="jumbotron" id="enTete">
     <h1>Le blog de John et Chris</h1>
     <div id="connexion">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Connexion<!--bouton d'acces au modal-->
-    </button>
+    <form>
+    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Connexion">
+        <!--Connexion--bouton d'acces au modal-->
+    </form>
     <form  id="deconnexion" method="POST" action="deconnexion.php">
         <input type="submit" class="btn btn-primary" value="Deconnexion"><!--bouton de déconnexion-->
     </form>
+    <div id="message">
+        <?php   $welcome=$_SESSION['id'];
+                if(isset($welcome)){
+                    echo 'Bienvenue ' .$_SESSION['pseudo'];
+                }
+                if(isset($_GET['error'])){
+                    echo '<font color="red">'.$_GET['error']. "</font>";
+                } 
+        ?>
+    </div>
     </div>
 
-    <?php $erreur=$_GET['error'];
-    if(isset($erreur)){
-            echo '<font color="red">'.$erreur. "</font>";
-    } ?>
+   
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-sm">

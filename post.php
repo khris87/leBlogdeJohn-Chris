@@ -1,10 +1,11 @@
 <?php 
+session_start();
 
 include 'header.php';
 
 include 'fonctions.php';
 
-$blogId=$_GET['id'];
+$blogId=$_GET['art'];
 $content=thePost($bdd,$blogId);
 $showContent=$content->fetch();
 ?>
@@ -18,6 +19,12 @@ $showContent=$content->fetch();
             </figure>
             
             <p><?php echo $showContent['content'] ?></p>
+            <div id="message">
+            <?php $welcome=$_SESSION['id'];
+                if(isset($welcome) && $welcome===$showContent['userId']){
+                    echo $_SESSION['pseudo']. ', cliquez <a href="updatethepost.php?art=' .$blogId. '&id=' .$welcome. '">ici</a> si vous souhaitez modifier votre article.';
+                } ?>
+            </div>
         </article>
         <aside class="col-12 col-lg-4">
             <h6>Posté par : <?php echo $showContent['pseudo'] ?></h6>
