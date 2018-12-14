@@ -5,7 +5,6 @@ $idTheme=$_GET['id'];
 ?>
 <h2 class="text-uppercase"><?php $theTheme=theTheme($bdd,$idTheme);
                             $nameTheme=$theTheme->fetch();
-                            var_dump();
                             echo $nameTheme['name'] ?></h2>
 
 <div class="container">

@@ -19,12 +19,12 @@ function getPosts($bdd){//les 10 derniers posts en page d'accueil
     $reponse=$bdd->query('SELECT * FROM `posts` ORDER BY published DESC LIMIT ' .(($cPage-1)*$perPage). ',' .$perPage. ';');
     
     while($blogArticles=$reponse->fetch()){
-        echo '<article id="' .$blogArticles['id']. '">
-            <h3>' .$blogArticles["title"]. '</h3>
-            <img src="' .$blogArticles['thumbnail']. '" class="img-fluid rounded">
-            <p class="apercu">' .$blogArticles["content"]. '</p>
-            <a href="post.php?id=' .$blogArticles['id']. '">voir plus</a>
-        </article>';
+        echo '<article id="' .$blogArticles['id']. '">';
+        echo '<h3>' .$blogArticles["title"]. '</h3>';
+        echo '<img src="' .$blogArticles['thumbnail']. '" class="img-fluid rounded">';
+        echo '<p class="apercu">' .$blogArticles["content"]. '</p>';
+        echo '<a href="post.php?art=' .$blogArticles['id']. '&id=' .$_SESSION['id']. '">voir plus</a>';
+        echo '</article>';
     }
     
     echo '<ul class="pagination pagination-lg">';
@@ -59,6 +59,11 @@ function lastsPosts($bdd,$userId,$blogId){//les 10 derniers articles de l'auteur
                             ' AND posts.id != ' .$blogId. 
                             ' ORDER BY published DESC LIMIT 10;');
     
+    return $reponse;
+}
+
+function auteurs($bdd){
+    $reponse=$bdd->query('SELECT * FROM users INNER JOIN posts ON `posts`.`userId`=`users`.`id`;');
     return $reponse;
 }
 

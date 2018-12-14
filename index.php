@@ -94,6 +94,16 @@ include 'fonctions.php';
                 ?>
             </dl>
             </div>
+            <div class="col-12 col-lg-6">
+            <h3>Articles par auteurs</h3>
+            <dl>
+                <?php $auteurs=auteurs($bdd);
+                    while($nameAuteurs=$auteurs->fetch()){
+                        echo '<dt>' .$nameAuteurs['pseudo']. '</dt>' ;
+                    }
+                ?>
+                </dl>
+            </div>
         </div>
     </div>
     </div>
