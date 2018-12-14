@@ -22,7 +22,7 @@ function getPosts($bdd){//les 10 derniers posts en page d'accueil
         echo '<article id="' .$blogArticles['id']. '">
             <h3>' .$blogArticles["title"]. '</h3>
             <img src="' .$blogArticles['thumbnail']. '" class="img-fluid rounded">
-            <p class="text-truncate">' .$blogArticles["content"]. '</p>
+            <p class="apercu">' .$blogArticles["content"]. '</p>
             <a href="post.php?id=' .$blogArticles['id']. '">voir plus</a>
         </article>';
     }
