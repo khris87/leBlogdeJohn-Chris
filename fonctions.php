@@ -57,7 +57,12 @@ function lastsPosts($bdd,$userId,$blogId){//les 10 derniers articles de l'auteur
 }
 
 function auteurs($bdd){
-    $reponse=$bdd->query('SELECT * FROM users INNER JOIN posts ON `posts`.`userId`=`users`.`id`;');
+    $reponse=$bdd->query('SELECT * FROM users;');
+    return $reponse;
+}
+
+function postsParAuteurs($bdd,$userId){
+    $reponse=$bdd->query('SELECT * FROM `posts` INNER JOIN `users` ON `users`.`id`=`posts`.`userId` WHERE `users`.`id`=' .$userId);
     return $reponse;
 }
 

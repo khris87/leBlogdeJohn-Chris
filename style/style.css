@@ -1,7 +1,8 @@
 .flex-container {
   display: flex;
   flex-direction: column;
-  background-color: DodgerBlue; }
+  border: 1px solid grey;
+  border-radius: 5px; }
 
 .flex-container > article {
   background-color: #f1f1f1;
@@ -30,10 +31,25 @@
   padding: 0 10px;
   font-size: 25px; }
 
+<<<<<<< HEAD
 h5 {
   color: green; }
 
 .font {
   font-style: italic; }
+=======
+dl {
+  border-left: 1px solid grey;
+  text-align: left;
+  padding-left: 10px; }
+
+aside {
+  height: 668px;
+  overflow: hidden; }
+
+.titresNiv1 {
+  border-bottom: 1px solid grey;
+  font-size: 65px; }
+>>>>>>> a38eb2db4d8595a3f79d2cbf2252f24cda673aa9
 
 /*# sourceMappingURL=style.css.map */
