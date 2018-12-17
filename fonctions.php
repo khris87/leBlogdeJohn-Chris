@@ -10,34 +10,28 @@ function getPosts($bdd){//les 10 derniers posts en page d'accueil
     $perPage=10;
     $nbPage=ceil($nbArt/$perPage);
 
-    if (isset($_GET['p']) && $_GET['p']>0 && $_GET['p']<=$nbPage){
+    if (isset($_GET['p']) && $_GET['p']>0 && $_GET['p']<=$nbPage)
+    {
         $cPage=$_GET['p'];
-    }else{
+    }
+    else
+    {
         $cPage=1;
     }
 
     $reponse=$bdd->query('SELECT * FROM `posts` ORDER BY published DESC LIMIT ' .(($cPage-1)*$perPage). ',' .$perPage. ';');
     
-    while($blogArticles=$reponse->fetch()){
+    while($blogArticles=$reponse->fetch())
+    {
         echo '<article id="' .$blogArticles['id']. '">';
         echo '<h3>' .$blogArticles["title"]. '</h3>';
         echo '<img src="' .$blogArticles['thumbnail']. '" class="img-fluid rounded">';
         echo '<p class="apercu">' .$blogArticles["content"]. '</p>';
         echo '<a href="post.php?art=' .$blogArticles['id']. '&id=' .$_SESSION['id']. '">voir plus</a>';
         echo '</article>';
+        echo '<ul class="pagination pagination-lg">';
+        echo '</ul>';
     }
-    
-    echo '<ul class="pagination pagination-lg">';
-
-    for($i=1;$i<=$nbPage;$i++){
-        if($i==$cPage){
-            echo '<li> ' .$i. ' </li>';
-        }else{
-            echo '<li><a href="index.php?p=' .$i. '"> ' .$i. ' </a></li>';
-        }
-    }
-
-    echo '</ul>';
 }
 
 function thePost($bdd,$blogId){//page dédiée à un article
@@ -121,7 +115,6 @@ function newPostTheme($bdd, $id, $themeId)
 
 function supprime($bdd, $id)
     {
-        var_dump($id);
         $crache = $bdd->query('DELETE FROM posts WHERE posts.id ='.$id);
         header("location:index.php");
     }

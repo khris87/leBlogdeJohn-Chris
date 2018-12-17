@@ -33,15 +33,19 @@ if(isset($_POST['newmdp']) AND !empty($_POST['newmdp2']))
     if($mdp == $mdp2)
     {
        $insertmdp = $bdd->prepare("UPDATE users SET mdp= ? WHERE id=");
-       $insertmdp->execute(array($mdp['id']));
+       $insertmdp->execute(array($mdp, $_SESSION['id']));
+       header('location: index.php?id='.$_SESSION['id']);
     }
-
-    $newmail = htmlspecialchars($_POST['newmail']);
-    $insertmail = $bdd->prepare("UPDATE users SET mail = ? WHERE id = ?");
-    $insertmail->execute(array($newmail, $_SESSION['id']));
-    $header('location: index.php?id='.$_SESSION['id']);
+    else
+    {
+        $msg = "Vos deux mots de passes ne correspondent pas !";
+    }
 }
 
+if(isset($_POST['newpseudo']) AND $_POST['newpseudo'] == $user['pseudo'])
+{
+    header('location: index.php?id='.$_SESSION['id']);
+}  
 ?>
 
 <html lang="fr">
@@ -72,6 +76,7 @@ if(isset($_POST['newmdp']) AND !empty($_POST['newmdp2']))
             <input type="password" name="newmdp2" placeholder="Confirmation du mot de passe" /><br />
             <input type="submit" value="Mettre à jour mon profil !" />
         </form>
+        <?php if(isset($msg)) { echo $msg; } ?>
     </div>
 <script src="library/bootstrap/js/bootstrap.bundle.js"></script><br />     
 </body>

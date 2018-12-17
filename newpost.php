@@ -2,6 +2,7 @@
 session_start();
 include "connexion.php";
 include "fonctions.php";
+include "header.php";
 
 $title = $content = $thumbnail = "";
 if (!empty($_POST))
@@ -40,30 +41,32 @@ if (!empty($_POST))
 
 if(isset($_SESSION['id']))
 { ?>
-    <form method="post" action="newpost.php" enctype="multipart/form-data">
-        <div class="col-12 col-lg-6" align="center">
-            <label for="newpost"><h3>Veuillez saisir votre article :</h3></label><br />
+    <div class="container">
+        <div class="row">
+        <form method="post" action="newpost.php" enctype="multipart/form-data">
+            <div class="col-12 col-lg-12" align="center">
+                <label for="newpost"><h2>Veuillez saisir votre article :</h2></label><br /><br />
 
-            <label for="theme"><h5> Choisir Votre Théme :</h5></label>
-            <?php $themes=themes($bdd);
-                    while($nameThemes=$themes->fetch()){
-                        //var_dump($nameThemes);
-                        echo '<input type="checkbox" name="idThemes[]" id="idThemes'.$nameThemes['id'].'" value="'.$nameThemes['id'].'">' .$nameThemes['name'];
-                    } ?>   
+                <label for="theme"><h5> Choisir Votre Théme :</h5></label><br />
+                <?php $themes=themes($bdd);
+                        while($nameThemes=$themes->fetch()){
+                            echo '<input type="checkbox" name="idThemes[]" id="idThemes'.$nameThemes['id'].'" value="'.$nameThemes['id'].'">' .$nameThemes['name'];
+                        } ?><br /><br />   
 
-            <label for="titre"><h5>Votre Titre :</h5></label>
-            <input type="text" placeholder="Votre Titre" id="titre" name="title" value="<?php echo $title; ?>"><br />
+                <label for="titre"><h5>Votre Titre :</h5></label><br />
+                <input type="text" placeholder="Votre Titre" id="titre" name="title" value="<?php echo $title; ?>"><br /><br />
 
-            <label for="thumbnail"><h5>Veuillez télécharger votre image :</h5></label><br />
-            <input type="file" placeholder="Votre image" id="thumbnail" name="thumbnail" value="<?php echo $thumbnail; ?>"><br />
+                <label for="thumbnail"><h5>Veuillez télécharger votre image :</h5></label><br />
+                <input type="file" placeholder="Votre image" id="thumbnail" name="thumbnail" value="<?php echo $thumbnail; ?>"><br />
 
-            <textarea name="content" rows="8" cols="45" placeholder="Rajoutez votre article" value="<?php echo $content; ?>"></textarea><br />
+                <textarea name="content" rows="8" cols="45" placeholder="Rajoutez votre article" value="<?php echo $content; ?>"></textarea><br /><br />
 
-            <label for="envoi"><h5>Envoyer votre article :</h5></label>
-            <input type="submit" name="validation" placeholder="Envoyer" />
-            
+                <label for="envoi"><h5>Envoyer votre article :</h5></label>
+                <input type="submit" class="btn btn-primary" name="validation" placeholder="Envoyer" />
+            </div>
+        </form>
         </div>
-    </form>
+    </div>
 <?php
 }
 else

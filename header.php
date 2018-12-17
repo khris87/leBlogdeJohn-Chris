@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="library/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 
 <body>
@@ -24,6 +25,7 @@
     <form  id="deconnexion" method="POST" action="deconnexion.php">
         <input type="submit" class="btn btn-primary" value="Deconnexion"><!--bouton de déconnexion-->
     </form>
+    
     <div id="message">
         <?php   $welcome=$_SESSION['id'];
                 if(isset($welcome)){

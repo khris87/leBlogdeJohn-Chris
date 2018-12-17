@@ -33,10 +33,14 @@ $showContent=$content->fetch();
             <div>
                 <label for="supprime"><h5>Supprimé votre article :</h5></label>
                 <a href="delete.php?id=<?php echo $blogId ?>" class="btn btn-primary">Supprimé</a>
+                <?php $welcome=$_SESSION['id'];
+                if(isset($welcome) && $welcome===$showContent['userId']){
+                    //echo ' Supprimez votre article <a href="delete.php?id=' .$blogId. '" class="btn btn-primary">Supprimé</a>
+                } ?>
             </div>
 
             <?php
-            $blogId=$_GET['id'];
+            $blogId=$_GET['art'];
             $userId=$showContent['userId'];
             $lastsPosts=lastsPosts($bdd,$userId,$blogId);
             echo '<div class="flex-container mt-3">';
@@ -45,7 +49,7 @@ $showContent=$content->fetch();
                 echo '<article id="' .$showLasts['id']. '">
                     <h3>' .$showLasts["title"]. '</h3>
                     <p class="text-truncate">' .$showLasts["content"]. '</p>
-                    <a href="post.php?id=' .$showLasts['id']. '">voir plus</a>
+                    <a href="post.php?art=' .$showLasts['id']. '">voir plus</a>
                 </article>';
             }
             echo '</div>' ?>

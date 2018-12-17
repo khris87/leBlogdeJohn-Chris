@@ -61,7 +61,7 @@ include 'fonctions.php';
                     <tr>
                         <td></td>
                         <td>
-                            <input type="submit" name="forminscription" value="je m'inscris" />
+                            <input class="btn btn-primary" type="submit" name="forminscription" value="je m'inscris" />
                         </td>
                     </tr>
                 </table>        
