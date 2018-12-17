@@ -17,6 +17,7 @@ $showContent=$content->fetch();
                 <img src="<?php echo $showContent['thumbnail'] ?>" class="figure-img img-fluid rounded">
                 <figcaption class="figure-caption"><?php echo $showContent['thumbnail'] ?></figcaption>
             </figure>
+            
             <p><?php echo $showContent['content'] ?></p>
             <div id="message">
             <?php $welcome=$_SESSION['id'];
@@ -28,6 +29,12 @@ $showContent=$content->fetch();
         <aside class="col-12 col-lg-4">
             <h6>Posté par : <?php echo $showContent['pseudo'] ?></h6>
             <span class="badge badge-info">le : <?php echo date_format(date_create($showContent['published']),'d/m/Y à H:m') ?></span>
+
+            <div>
+                <label for="supprime"><h5>Supprimé votre article :</h5></label>
+                <a href="delete.php?id=<?php echo $blogId ?>" class="btn btn-primary">Supprimé</a>
+            </div>
+
             <?php
             $blogId=$_GET['art'];
             $userId=$showContent['userId'];
@@ -42,6 +49,8 @@ $showContent=$content->fetch();
                 </article>';
             }
             echo '</div>' ?>
+            
         </aside>
+        
     </div>
 </section>

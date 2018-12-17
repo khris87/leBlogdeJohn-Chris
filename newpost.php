@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "connexion.php";
+include "fonctions.php";
 
 $title = $content = $thumbnail = "";
 if (!empty($_POST))
@@ -12,6 +13,7 @@ if (!empty($_POST))
    $isSuccess = true;
    $isUploadSuccess = true;
    $content = $_POST["content"];
+   $id = $_SESSION['id'];
 
    if($isUploadSuccess)
         {
@@ -23,17 +25,16 @@ if (!empty($_POST))
 
     if($isSuccess && $isUploadSuccess)
     {
-        $statement = $bdd->prepare("INSERT INTO posts(`thumbnail`, `title`, `content`,`userId`)
-        VALUES (:thumbnail,:title,:content,:userId)");
-        $requete = $statement->execute(array(
-            'thumbnail'=>$thumbnailPath,
-            'title'=>$title,
-            'content'=>$content,
-            'userId'=>$_SESSION['id']
-            ));
-        header("location:index.php");
-
+        newPost($bdd, $id, $thumbnailPath, $title, $content);
+        $id = getNewPost($bdd, $title);
+        $idThemes = $_POST['idThemes'];
+        foreach ($idThemes as $themeId)
+            {
+                newPostTheme($bdd, $id, $themeId);
+            }
     }
+
+
     
 }
 
@@ -43,8 +44,15 @@ if(isset($_SESSION['id']))
         <div class="col-12 col-lg-6" align="center">
             <label for="newpost"><h3>Veuillez saisir votre article :</h3></label><br />
 
-            <label for="theme"><h5>Votre Théme :</h5></label>
-            <input type="text" placeholder="Votre Théme" id="theme" name="title" value="<?php echo $title; ?>"><br />
+            <label for="theme"><h5> Choisir Votre Théme :</h5></label>
+            <?php $themes=themes($bdd);
+                    while($nameThemes=$themes->fetch()){
+                        //var_dump($nameThemes);
+                        echo '<input type="checkbox" name="idThemes[]" id="idThemes'.$nameThemes['id'].'" value="'.$nameThemes['id'].'">' .$nameThemes['name'];
+                    } ?>   
+
+            <label for="titre"><h5>Votre Titre :</h5></label>
+            <input type="text" placeholder="Votre Titre" id="titre" name="title" value="<?php echo $title; ?>"><br />
 
             <label for="thumbnail"><h5>Veuillez télécharger votre image :</h5></label><br />
             <input type="file" placeholder="Votre image" id="thumbnail" name="thumbnail" value="<?php echo $thumbnail; ?>"><br />
@@ -53,6 +61,7 @@ if(isset($_SESSION['id']))
 
             <label for="envoi"><h5>Envoyer votre article :</h5></label>
             <input type="submit" name="validation" placeholder="Envoyer" />
+            
         </div>
     </form>
 <?php
