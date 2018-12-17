@@ -1,7 +1,7 @@
 <?php 
 include 'header.php';
 include 'fonctions.php';
-$idTheme=$_GET['art'];
+$idTheme=$_GET['theme'];
 ?>
 <h2 class="text-uppercase"><?php $theTheme=theTheme($bdd,$idTheme);
                             $nameTheme=$theTheme->fetch();
@@ -17,9 +17,9 @@ $idTheme=$_GET['art'];
                     <a href="post.php?art=<?php echo $posts['id'] ?>"><h4><?php echo $posts['title'] ?></h4></a>
                     <h6>Posté par : <?php echo $posts['pseudo'] ?></h6>
                     <span class="badge badge-info">le : <?php echo date_format(date_create($posts['published']),'d/m/Y à H:m') ?></span>
-                    <article>
+                    <aside>
                     <?php echo $posts['content'] ?>
-                    </article>
+                    </aside>
                     </div>
                 <?php
                 } ?>

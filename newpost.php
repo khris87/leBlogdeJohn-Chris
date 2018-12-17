@@ -47,7 +47,6 @@ if(isset($_SESSION['id']))
             <label for="theme"><h5> Choisir Votre Théme :</h5></label>
             <?php $themes=themes($bdd);
                     while($nameThemes=$themes->fetch()){
-                        //var_dump($nameThemes);
                         echo '<input type="checkbox" name="idThemes[]" id="idThemes'.$nameThemes['id'].'" value="'.$nameThemes['id'].'">' .$nameThemes['name'];
                     } ?>   
 

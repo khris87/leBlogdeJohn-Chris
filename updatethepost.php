@@ -13,7 +13,7 @@ $showContent=$content->fetch();
     <section class="container">
         <div class="row">
             <aside class="col-12 col-lg-4">
-                <h1 class="jumbotron">Aperçu de votre article</h1>
+                <h1 class="titresNiv1">Aperçu de votre article</h1>
                 <h2><?php echo $showContent['title'] ?></h2>
                 <figure id="thumbnail" class="figure float-left">
                     <img src="<?php echo $showContent['thumbnail'] ?>" class="figure-img img-fluid rounded">
@@ -25,7 +25,7 @@ $showContent=$content->fetch();
         <?php if(isset($_SESSION['id']))
             { ?>
             <div class="col-12 col-lg-8">
-                <h1 class="jumbotron">Modifiez votre article</h1>
+                <h1 class="titresNiv1">Modifiez votre article</h1>
 
                 <form method="post" action="Traitement.php?art=<?php echo $blogId ?>&id=<?php echo $welcome ?>" enctype="multipart/form-data">
                     <div class="form-group">
@@ -36,7 +36,7 @@ $showContent=$content->fetch();
                         <textarea name="updateContent" class="form-control" rows="23" cols="78" placeholder="Rajoutez votre article"><?php echo $showContent['content'] ?></textarea><br />
                     </div>
                     <div class="form-group">
-                        <label for="envoi"><h5>Validez vos modifications</h5></label>
+                        <label for="envoi"><h5>Vérifiez vos modifications avant de valider</h5></label>
                         <input type="submit" class="form-control" name="validation" id="envoi" placeholder="Enregistrer les modifications" />
                     </div>
                 </form>
@@ -48,3 +48,5 @@ $showContent=$content->fetch();
 
     </div>
 </section>
+
+<?php include 'footer.php';

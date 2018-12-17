@@ -10,7 +10,7 @@ include 'fonctions.php';
 
     <div class="row">
 
-        <div class="flex-container col-12 col-lg-6">      
+        <div class="flex-container col-12 col-lg-6 pt-3">      
             <?php getPosts($bdd); ?>
         </div>
 
@@ -78,13 +78,13 @@ include 'fonctions.php';
         } 
         ?>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-12 col-lg-6">
             <h3>Articles par thèmes</h3>
             <dl>
                 <?php $themes=themes($bdd);
                     while($nameThemes=$themes->fetch()){
-                        echo '<dt><a href="themes.php?art=' .$nameThemes['id']. '">' .$nameThemes['name']. '</a></dt>' ;
+                        echo '<dt><a href="themes.php?theme=' .$nameThemes['id']. '">' .$nameThemes['name']. '</a></dt>' ;
                         $idTheme=$nameThemes['id'];
                         $seePosts=allPosts($bdd, $idTheme);
                         while($posts=$seePosts->fetch()){
@@ -99,7 +99,7 @@ include 'fonctions.php';
             <dl>
                 <?php $auteurs=auteurs($bdd);
                     while($nameAuteurs=$auteurs->fetch()){
-                        echo '<dt>' .$nameAuteurs['pseudo']. '</dt>' ;
+                        echo '<dt><a href="auteur.php?id=' .$nameAuteurs['id']. '">' .$nameAuteurs['pseudo']. '</a></dt>' ;
                         $userId=$nameAuteurs['id'];
                         $postsParAuteurs=postsParAuteurs($bdd,$userId);
                         while($pPA=$postsParAuteurs->fetch()){
