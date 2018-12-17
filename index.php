@@ -84,7 +84,7 @@ include 'fonctions.php';
             <dl>
                 <?php $themes=themes($bdd);
                     while($nameThemes=$themes->fetch()){
-                        echo '<dt><a href="themes.php?id=' .$nameThemes['id']. '">' .$nameThemes['name']. '</a></dt>' ;
+                        echo '<dt><a href="themes.php?art=' .$nameThemes['id']. '">' .$nameThemes['name']. '</a></dt>' ;
                         $idTheme=$nameThemes['id'];
                         $seePosts=allPosts($bdd, $idTheme);
                         while($posts=$seePosts->fetch()){
@@ -100,6 +100,11 @@ include 'fonctions.php';
                 <?php $auteurs=auteurs($bdd);
                     while($nameAuteurs=$auteurs->fetch()){
                         echo '<dt>' .$nameAuteurs['pseudo']. '</dt>' ;
+                        $userId=$nameAuteurs['id'];
+                        $postsParAuteurs=postsParAuteurs($bdd,$userId);
+                        while($pPA=$postsParAuteurs->fetch()){
+                            echo '<dd>' .$pPA['title']. '</dd>';
+                        }
                     }
                 ?>
                 </dl>

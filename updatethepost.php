@@ -28,14 +28,17 @@ $showContent=$content->fetch();
                 <h1 class="jumbotron">Modifiez votre article</h1>
 
                 <form method="post" action="Traitement.php?art=<?php echo $blogId ?>&id=<?php echo $welcome ?>" enctype="multipart/form-data">
-
-                    <label for="theme"><h5>Titre</h5></label>
-                    <input type="text" placeholder="titre" id="updateTitle" name="updateTitle" value="<?php echo $showContent['title'] ?>"><br />
-
-                    <textarea name="updateContent" rows="8" cols="45" placeholder="Rajoutez votre article"><?php echo $showContent['content'] ?></textarea><br />
-
-                    <label for="envoi"><h5>Validez vos modifications</h5></label>
-                    <input type="submit" name="validation" id="envoi" placeholder="Enregistrer les modifications" />
+                    <div class="form-group">
+                        <label for="theme"><h5>Titre</h5></label>
+                        <input type="text" class="form-control" placeholder="titre" id="updateTitle" name="updateTitle" value="<?php echo $showContent['title'] ?>"><br />
+                    </div>
+                    <div class="form-group">
+                        <textarea name="updateContent" class="form-control" rows="23" cols="78" placeholder="Rajoutez votre article"><?php echo $showContent['content'] ?></textarea><br />
+                    </div>
+                    <div class="form-group">
+                        <label for="envoi"><h5>Validez vos modifications</h5></label>
+                        <input type="submit" class="form-control" name="validation" id="envoi" placeholder="Enregistrer les modifications" />
+                    </div>
                 </form>
             </div>
 
